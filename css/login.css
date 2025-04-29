@@ -1,0 +1,21 @@
+body {
+  background-color: #fef6ff;
+}
+
+h1,
+h2 {
+  color: #333;
+}
+
+.btn-success {
+  background-color: #34c759;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #28a745;
+}
+
+.card {
+  border-radius: 20px;
+}
