@@ -32,6 +32,10 @@ bins.forEach((bin, index) => {
   }
 });
 
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("registrationForm");
 
@@ -46,7 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const name = document.getElementById("username").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const role = document.getElementById("role").value;
+    
+    // Get the role value from the select element or assign a default
+    const role = "normal_user"; // Replace with dynamic role selection if needed
 
     const data = {
       name: name,
@@ -79,42 +85,115 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent form from reloading the page
 
-  // Define async function inside the event handler
-  async function loginUser() {
-    const email = document.getElementById("email1").value.trim();
-    const password = document.getElementById("password1").value.trim();
 
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("registrationForm2");
+
+  if (!form) {
+    console.error("registrationForm not found in DOM");
+    return;
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name2 = document.getElementById("username2").value;
+    const email2 = document.getElementById("email2").value;
+    const password2 = document.getElementById("password2").value;
+    const role2 = document.getElementById("role").value;
+      // const role ="normal_user";
+
+    const data = {
+      name: name2,
+      email: email2,
+      password: password2,
+      role: role2,
+    };
 
     try {
       const response = await fetch(
-        "https://zerowaste-cgdtdqhpcuhxceb2.uaenorth-01.azurewebsites.net/login.php",
+        "http://zerowaste-cgdtdqhpcuhxceb2.uaenorth-01.azurewebsites.net/register.php",
         {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         }
       );
 
       const result = await response.json();
-      console.log(result); // Log response to inspect the structure
-
-      // Adjust this condition based on actual API response
-      // if (result.success) {
-      //   window.location.href = "index.html";
-      // } else {
-      //   alert(result.message || "Email not found or incorrect password.");
-      // }
+      document.getElementById("registrationResult").innerText =
+        result.message || "Registration successful!";
     } catch (error) {
-      console.error("Login request failed:", error);
-      alert("An error occurred. Please try again.");
+      console.error("Registration failed:", error);
+      document.getElementById("registrationResult").innerText =
+        "Registration failed. Check console for details.";
     }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = document.getElementById("email1").value.trim();
+  const password = document.getElementById("password1").value.trim();
+
+  if (!email || !password) {
+    alert("Please enter both email and password.");
+    return;
   }
 
-  // Call the async function
-  loginUser();
+  fetch("https://zerowaste-cgdtdqhpcuhxceb2.uaenorth-01.azurewebsites.net/login.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Important: Ensure this is set
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  })
+    .then(async (response) => {
+      const text = await response.text();
+      try {
+        const result = JSON.parse(text);
+
+        if (response.ok && result.token) {
+          localStorage.setItem("token", result.token);
+          window.location.href = "index.html";
+        } else {
+          alert(result.message || "Invalid login credentials.");
+        }
+      } catch (err) {
+        console.error("Invalid JSON response:", text);
+        alert("Server returned invalid response.");
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      alert("Connection error. Try again.");
+    });
 });
+
+
+
