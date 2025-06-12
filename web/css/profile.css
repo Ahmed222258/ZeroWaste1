@@ -1,0 +1,21 @@
+.profile-header {
+  background-color: #28a745;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.info-card {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.logout-btn {
+  background-color: #37b943;
+  color: white;
+}

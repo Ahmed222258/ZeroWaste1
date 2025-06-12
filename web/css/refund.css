@@ -1,0 +1,41 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.card img {
+  border-radius: 12px;
+  max-height: 150px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-weight: bold;
+  color: #000;
+}
+
+.card-subtitle {
+  color: #6c757d;
+}
+
+.btn-redeem {
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 2px solid #28a745;
+}
+
+.btn-redeem:hover,
+.btn-redeem:focus,
+.btn-redeem:active {
+  background-color: #28a745;
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+.reward-points {
+  font-weight: 500;
+  color: #555;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zero Waste Manager</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-XQoYMqMTK8LvdlxU8TVmN1B1X5N1qOho1z9a2/BrE1eZ0R0s6dxgRAc47Ey8m6L14Zy4EdZ3fKUNqhzQeei1hw==" crossorigin="" />
+  <style>
+    body {
+      background-color: #e8f5e9;
+      font-family: Arial, sans-serif;
+    }
+
+    .dashboard-card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      height: 100%;
+    }
+
+    .map-container {
+      height: 300px;
+      border: 2px solid green;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .quick-actions .btn {
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold">ZERO WASTE<br />MANAGER</h3>
+      <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+        <i class="bi bi-person"></i>
+      </div>
+    </div>
+
+    <p class="fs-5">Welcome back, Olivia</p>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="dashboard-card">
+          <i class="bi bi-recycle text-success fs-3"></i>
+          <h6 class="fw-bold mt-2">Total Waste Collected Today</h6>
+          <p>1200 kg</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="dashboard-card">
+          <i class="bi bi-truck text-success fs-3"></i>
+          <h6 class="fw-bold mt-2">Active Collection Routes</h6>
+          <p>8 Routes Ongoing</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="dashboard-card">
+          <i class="bi bi-gear text-success fs-3"></i>
+          <h6 class="fw-bold mt-2">Servo Control</h6>
+          <p>Tap to manage bins</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="dashboard-card">
+          <i class="bi bi-clock text-success fs-3"></i>
+          <h6 class="fw-bold mt-2">Pending Approvals</h6>
+          <p>3 Pickup Requests</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <h5 class="mt-5 fw-bold">Waste Map Overview</h5>
+    <div class="map-container my-3" id="map"></div>
+
+    <!-- Quick Actions -->
+    <h5 class="fw-bold">Quick Actions</h5>
+    <div class="quick-actions">
+      <button class="btn btn-outline-success">Assign Route</button>
+      <button class="btn btn-outline-success">Approve Requests</button>
+      <button class="btn btn-outline-success">Add Collector</button>
+      <button class="btn btn-outline-success">View Reports</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-vgI3Gfg7IlbIC5yRfAB0lTMi8zDn5Neh6F7K6j0MxpjWxDE3iX1VGwEv6QF8RNTN3vS/MHXOp3EcAKK3Y5V+wQ==" crossorigin=""></script>
+  <script>
+    const map = L.map('map').setView([29.99316026422081, 31.311442897776715], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([29.99316026422081, 31.311442897776715]).addTo(map)
+      .bindPopup('MTI University')
+      .openPopup();
+  </script>
+</body>
+
+</html>

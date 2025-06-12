@@ -1,0 +1,78 @@
+/* body {
+  background-color: #d2d9d1;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(0, 128, 0, 0.5);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.top-circle {
+  top: -100px;
+  left: -100px;
+}
+
+.bottom-circle {
+  bottom: -100px;
+  right: -100px;
+}
+
+.gradient-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  padding: 1rem;
+  border-radius: 0 0 15px 15px;
+} */
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: #d2d9d1;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ensures the main content area takes up remaining space */
+main {
+  flex: 1;
+}
+
+.circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(0, 128, 0, 0.5);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.top-circle {
+  top: -100px;
+  left: -100px;
+}
+
+.bottom-circle {
+  bottom: -100px;
+  right: -100px;
+}
+
+.gradient-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  padding: 1rem;
+  border-radius: 0 0 15px 15px;
+}
+
+nav{
+    background-color: #37b943;
+}

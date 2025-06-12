@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .marker-icon {
+      font-size: 24px;
+    }
+    .circle-bg {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background-color: rgba(0, 128, 0, 0.5);
+      border-radius: 50%;
+      z-index: 500;
+    }
+    .top-left {
+      top: -150px;
+      left: -150px;
+    }
+    .bottom-right {
+      bottom: -150px;
+      right: -150px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="circle-bg top-left"></div>
+  <div class="circle-bg bottom-right"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const destination = [29.99316026422081, 31.311442897776715];
+
+    const map = L.map('map').setView(destination, 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const destinationMarker = L.marker(destination).addTo(map)
+      .bindPopup("Destination")
+      .openPopup();
+
+    function onLocationFound(e) {
+      const userLatLng = [e.latitude, e.longitude];
+      L.marker(userLatLng, {
+        icon: L.divIcon({
+          html: '<i class="marker-icon">👤</i>',
+          className: '',
+          iconSize: [30, 30]
+        })
+      }).addTo(map).bindPopup("You are here").openPopup();
+
+      // Fetch route using OSRM API
+      fetch(`https://router.project-osrm.org/route/v1/driving/${e.longitude},${e.latitude};${destination[1]},${destination[0]}?overview=full&geometries=geojson`)
+        .then(res => res.json())
+        .then(data => {
+          const coords = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+          L.polyline(coords, { color: 'blue', weight: 4 }).addTo(map);
+        })
+        .catch(err => console.error("Route error:", err));
+    }
+
+    function onLocationError(e) {
+      alert(e.message);
+    }
+
+    map.locate({ setView: true, maxZoom: 16 });
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
+  </script>
+</body>
+</html>

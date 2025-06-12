@@ -1,0 +1,276 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-header {
+      background-color: #37b943;
+      color: white;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .info-card {
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .info-card h5 {
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+    }
+    .info-card p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .signout-btn {
+      background-color: #37b943;
+      color: white;
+      border-radius: 20px;
+      width: 200px;
+      height: 50px;
+      font-weight: bold;
+      border: none;
+    }
+  </style>
+</head>
+   <header>
+    <nav  class="navbar navbar-expand-lg bg-body-tertiary"  >
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="img/5869173.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top me-2" />
+          <div class="navbar-nav d-flex flex-row">
+            <a class="nav-link " aria-current="page" href="user.html">Home</a>
+            <a class="nav-link " href="basket.html">Basket</a>
+            <a class="nav-link active" href="profil.html">Profile</a>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup"></div>
+      </div>
+    </nav>
+  </header>
+<body>
+  <div class="profile-header">
+    <h1>Your Profile</h1>
+  </div>
+
+  <div class="container my-4 flex-grow-1 d-flex flex-column align-items-center">
+    <h3 id="greeting">Hi, Guest!</h3>
+
+    <div class="w-100 mt-4" style="max-width: 400px;">
+      <div class="info-card">
+        <h5>Challenge Points</h5>
+        <p id="points">Loading...</p>
+      </div>
+      <div class="info-card">
+        <h5>Location Baskets</h5>
+        <p>5</p>
+      </div>
+      <div class="info-card">
+        <h5>Help & Support</h5>
+        <p>1966</p>
+      </div>
+    </div>
+
+    <button id="signOutBtn" class="signout-btn mt-auto">Sign Out</button>
+  </div>
+   <footer class="bg-light text-center text-lg-start mt-5">
+      <div class="container p-4">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase fw-bold">Zero Waste Management System</h5>
+            <p>Our mission is to build a greener, cleaner future by promoting sustainable waste disposal practices. Together, we can make a significant impact by recycling, reducing, and reusing resources.</p>
+          </div>
+
+       
+
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Contact</h5>
+            <ul class="list-unstyled mb-0">
+              <li><span class="text-dark">Email: info@zerowaste.com</span></li>
+              <li><span class="text-dark">Phone: +1 234 567 890</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="text-center p-3 bg-success text-white">
+        © 2025 Zero Waste Management System | All Rights Reserved
+      </div>
+    </footer>
+  <script src="js/profile.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    .header {
+      background-color: green;
+      color: white;
+      text-align: center;
+      padding: 60px 20px 30px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .greeting {
+      font-size: 24px;
+      margin: 40px 0 20px;
+      text-align: center;
+    }
+    .card {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px 0;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .card-value {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .btn-logout {
+      display: block;
+      width: 100%;
+      background-color: #37b943;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 15px;
+      font-size: 16px;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+    .btn-logout:hover {
+      background-color: #2e9b3a;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Your Profile</h1>
+  </div>
+
+  <div class="container">
+    <div class="greeting" id="greeting">Hi, Guest!</div>
+
+    <div class="card" id="pointsCard">
+      <div class="card-title">Challenge Points</div>
+      <div class="card-value" id="pointsValue">Loading...</div>
+    </div>
+
+    <div class="card" onclick="navigateToMap()">
+      <div class="card-title">Location Baskets</div>
+      <div class="card-value">5</div>
+    </div>
+
+    <div class="card" onclick="navigateToHelp()">
+      <div class="card-title">Help & Support</div>
+      <div class="card-value">1966</div>
+    </div>
+
+    <button class="btn-logout" onclick="signOut()">Sign Out</button>
+  </div>
+
+  <script>
+    // Simulated SharedPreferences
+    const prefs = {
+      username: localStorage.getItem('username') || 'Guest',
+      token: localStorage.getItem('token'),
+    };
+
+    document.getElementById("greeting").textContent = `Hi, ${prefs.username}!`;
+
+    async function fetchPoints() {
+      if (!prefs.token) return;
+
+      try {
+        const response = await fetch("http://zerowaste-cgdtdqhpcuhxceb2.uaenorth-01.azurewebsites.net/get_user_points.php", {
+          headers: {
+            'Authorization': prefs.token
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const points = data.points;
+          if (points !== undefined) {
+            document.getElementById("pointsValue").textContent = `+${points}`;
+            console.log("✅ Points from DB:", points);
+          }
+        } else {
+          console.error("❌ Failed to fetch points. Status:", response.status);
+        }
+      } catch (err) {
+        console.error("❌ Error fetching points:", err);
+      }
+    }
+
+    // Auto-refresh points every 5 seconds
+    fetchPoints();
+    setInterval(fetchPoints, 5000);
+
+    function signOut() {
+      localStorage.clear();
+      window.location.href = "login.html"; // Replace with your login page
+    }
+
+    function navigateToMap() {
+      window.location.href = "map_page.html"; // Replace with actual map page
+    }
+
+    function navigateToHelp() {
+      window.location.href = "help.html"; // Replace with actual help page
+    }
+  </script>
+</body>
+</html>
