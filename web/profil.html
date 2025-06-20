@@ -220,7 +220,7 @@
 
     <button class="btn-logout" onclick="signOut()">Sign Out</button>
   </div>
-
+<!-- 
   <script>
     // Simulated SharedPreferences
     const prefs = {
@@ -232,11 +232,13 @@
 
     async function fetchPoints() {
       if (!prefs.token) return;
+     
 
       try {
         const response = await fetch("http://zerowaste-cgdtdqhpcuhxceb2.uaenorth-01.azurewebsites.net/get_user_points.php", {
           headers: {
             'Authorization': prefs.token
+          
           }
         });
 
@@ -271,6 +273,70 @@
     function navigateToHelp() {
       window.location.href = "help.html"; // Replace with actual help page
     }
-  </script>
+  </script> -->
+  <script>
+  // Simulated SharedPreferences using localStorage
+  const prefs = {
+    username: localStorage.getItem('username') || 'Guest',
+    token: localStorage.getItem('token'),
+  };
+
+  // Greet the user
+  document.getElementById("greeting").textContent = `Hi, ${prefs.username}!`;
+
+  // Function to fetch user points securely
+  async function fetchPoints() {
+    if (!prefs.token) {
+      console.warn("⚠️ No token found in localStorage.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://zerowaste-cgdtdqhpcuhxceb2.uaenorth-01.azurewebsites.net/get_user_points.php", {
+        method: "GET",
+        headers: {
+          'Authorization': `Bearer ${prefs.token}`
+          // Do NOT add Content-Type to GET request (prevents CORS preflight)
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const points = data.points;
+        if (points !== undefined) {
+          document.getElementById("pointsValue").textContent = `+${points}`;
+          console.log("✅ Points from DB:", points);
+        } else {
+          console.warn("⚠️ Points field missing in response:", data);
+        }
+      } else {
+        console.error("❌ Failed to fetch points. Status:", response.status);
+      }
+    } catch (err) {
+      console.error("❌ Error fetching points:", err.message);
+    }
+  }
+
+  // Auto-refresh points every 5 seconds
+  fetchPoints();
+  setInterval(fetchPoints, 5000);
+
+  // Sign out and redirect to login
+  function signOut() {
+    localStorage.clear();
+    window.location.href = "login.html"; // Replace with your login page
+  }
+
+  // Navigate to Map Page
+  function navigateToMap() {
+    window.location.href = "map.html"; // Replace with your map page
+  }
+
+  // Navigate to Help Page
+  function navigateToHelp() {
+    window.location.href = "help.html"; // Replace with your help page
+  }
+</script>
+
 </body>
 </html>
